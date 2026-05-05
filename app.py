@@ -553,38 +553,3 @@ with col_tbl:
         "Wind km/h":      forecast["wind"].round(1),
     })
     st.dataframe(tbl, use_container_width=True, hide_index=True, height=316)
- 
- 
-# =============================================================================
-# 11. Download + disclaimer
-# =============================================================================
- 
-st.divider()
-col_dl, col_disc = st.columns([1, 2])
- 
-with col_dl:
-    export = forecast[["pred_dt", "hour", "price",
-                        "temp", "wind", "solar", "humidity"]].copy()
-    export.columns = ["Datetime", "Hour", "Price_EUR_MWh",
-                      "Temp_C", "Wind_kmh", "Solar_Wm2", "Humidity_pct"]
-    fname = (
-        f"uk_electricity_forecast_"
-        f"{forecast['pred_dt'].iloc[0].strftime('%Y-%m-%d')}.csv"
-    )
-    st.download_button(
-        "⬇️  Download forecast as CSV",
-        data=export.to_csv(index=False),
-        file_name=fname,
-        mime="text/csv",
-        use_container_width=True,
-    )
- 
-with col_disc:
-    st.markdown("""
-    <div class='warn-box' style='margin:0'>
-    <b>Academic project disclaimer</b> — Produced by a Random Forest trained on
-    UK electricity market data 2016–2023. Test MAE = 18.07 EUR/MWh, R² = 0.373.
-    Not suitable for commercial trading decisions.
-    The model cannot predict sudden market shocks or policy changes.
-    </div>
-    """, unsafe_allow_html=True)
