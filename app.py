@@ -585,4 +585,4 @@ with col_disc:
     <b>Academic project disclaimer</b> — Produced by a Random Forest trained on
     UK electricity market data 2016–2023. Test MAE = 18.07 EUR/MWh, R² = 0.373.
     Not suitable for commercial trading decisions.
-    The model cannot predict sudden market shocks or policy changes.
+    The model cannot predict sudden market shocks or policy changes.""")
